@@ -108,8 +108,11 @@ namespace Flappy_Bird_Windows_Form
             int totalSeconds = (int)roundDuration.TotalSeconds;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
+            // Nanoseconds: 1 tick = 100 nanoseconds, show only first three digits
             long nanoseconds = (roundDuration.Ticks % TimeSpan.TicksPerSecond) * 100;
-            string timeString = $"{minutes:D2}:{seconds:D2}:{nanoseconds:D9}";
+            int nano3 = (int)(nanoseconds / 1_000_000); // Only first three digits
+
+            string timeString = $"{minutes:D2}:{seconds:D2}:{nano3:D3}";
 
             // Vis score, highscore og tid midt på skjermen
             scoreText.Font = new Font("Arial", 36, FontStyle.Bold);
