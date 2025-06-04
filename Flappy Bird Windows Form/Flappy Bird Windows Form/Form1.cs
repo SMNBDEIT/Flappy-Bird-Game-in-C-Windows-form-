@@ -20,11 +20,52 @@ namespace Flappy_Bird_Windows_Form
         int pipeSpeed = 8; // default pipe speed defined with an integer
         int gravity = 15; // default gravity speed defined with an integer
         int score = 0; // default score integer set to 0
+        private int highScore = 0; // Add this field to track the high score
+        private Button btnRestart; // Add this field to manage the Restart button
+        private DateTime roundStartTime;
+        private TimeSpan roundDuration;
+        private Point scoreTextDefaultLocation = new Point(10, 10); // Default location for scoreText
+        private readonly string highScoreFile = "highscore.txt";
         // variable ends
 
         public Form1()
         {
             InitializeComponent();
+
+            // Create and configure the Restart button
+            btnRestart = new Button();
+            btnRestart.Name = "btnRestart";
+            btnRestart.Text = "Restart";
+            btnRestart.Size = new Size(100, 40);
+            btnRestart.Location = new Point(350, 300); // Adjust as needed
+            btnRestart.Font = new Font("Arial", 12, FontStyle.Bold);
+            btnRestart.BackColor = Color.LightGreen;
+            btnRestart.ForeColor = Color.DarkBlue;
+            btnRestart.Click += btnRestart_Click;
+            btnRestart.Visible = false; // Hide by default
+
+            // Add the button to the form
+            this.Controls.Add(btnRestart);
+
+            scoreText.Location = scoreTextDefaultLocation; // Use default location
+            scoreText.Font = new Font("Arial", 16, FontStyle.Bold);
+            scoreText.ForeColor = Color.Black;
+            scoreText.BackColor = Color.Moccasin;
+            scoreText.BringToFront();
+            scoreText.AutoSize = true;
+
+            if (System.IO.File.Exists(highScoreFile))
+            {
+                string text = System.IO.File.ReadAllText(highScoreFile);
+                int.TryParse(text, out highScore);
+            }
+            else
+            {
+                highScore = 0;
+            }
+
+            this.KeyDown += gamekeyisdown;
+            this.KeyUp += gamekeyisup;
         }
 
         private void gamekeyisdown(object sender, KeyEventArgs e)
@@ -34,7 +75,7 @@ namespace Flappy_Bird_Windows_Form
             {
                 // if the space key is pressed then the gravity will be set to -15
                 gravity = -15;
-            }
+            }    
 
 
         }
@@ -53,9 +94,74 @@ namespace Flappy_Bird_Windows_Form
 
         private void endGame()
         {
-            // this is the game end function, this function will when the bird touches the ground or the pipes
-            gameTimer.Stop(); // stop the main timer
-            scoreText.Text += " Game over!!!"; // show the game over text on the score text, += is used to add the new string of text next to the score instead of overriding it
+            gameTimer.Stop();
+
+            // Oppdater highscore hvis nødvendig
+            if (score > highScore)
+            {
+                highScore = score;
+                System.IO.File.WriteAllText(highScoreFile, highScore.ToString());
+            }
+
+            // Beregn tid
+            roundDuration = DateTime.Now - roundStartTime;
+            int totalSeconds = (int)roundDuration.TotalSeconds;
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            long nanoseconds = (roundDuration.Ticks % TimeSpan.TicksPerSecond) * 100;
+            string timeString = $"{minutes:D2}:{seconds:D2}:{nanoseconds:D9}";
+
+            // Vis score, highscore og tid midt på skjermen
+            scoreText.Font = new Font("Arial", 36, FontStyle.Bold);
+            scoreText.ForeColor = Color.DarkGreen;
+            scoreText.BackColor = Color.Transparent;
+            scoreText.AutoSize = true;
+            scoreText.Text = $"Score: {score}\nHigh Score: {highScore}\nTime: {timeString}\nGame over!!!";
+            scoreText.Location = new Point(
+                (this.ClientSize.Width - scoreText.PreferredWidth) / 2,
+                (this.ClientSize.Height - scoreText.PreferredHeight) / 2
+            );
+            scoreText.BringToFront();
+
+            // Plasser restart-knappen under score
+            btnRestart.Location = new Point(
+                (this.ClientSize.Width - btnRestart.Width) / 2,
+                scoreText.Location.Y + scoreText.PreferredHeight + 20
+            );
+            btnRestart.Visible = true;
+            btnRestart.BringToFront();
+        }
+
+        private void RestartGame()
+        {
+            score = 0;
+            pipeSpeed = 8;
+            gravity = 15;
+            scoreText.Text = "Score: 0";
+            scoreText.Location = scoreTextDefaultLocation; // Tilbake til hjørnet
+            scoreText.Font = new Font("Arial", 16, FontStyle.Bold);
+            scoreText.ForeColor = Color.Black;
+            scoreText.BackColor = Color.Moccasin;
+            scoreText.AutoSize = true;
+            flappyBird.Top = 150;
+            pipeBottom.Left = 800;
+            pipeTop.Left = 950;
+            btnRestart.Visible = false;
+
+            // Start rundetimer
+            roundStartTime = DateTime.Now;
+
+            // Fjern "Game over!!!" hvis det finnes
+            if (scoreText.Text.Contains("Game over"))
+                scoreText.Text = "Score: 0";
+
+            this.Focus();
+            gameTimer.Start();
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            RestartGame();
         }
 
         private void gameTimerEvent(object sender, EventArgs e)
@@ -104,3 +210,4 @@ namespace Flappy_Bird_Windows_Form
 
     }
 }
+  

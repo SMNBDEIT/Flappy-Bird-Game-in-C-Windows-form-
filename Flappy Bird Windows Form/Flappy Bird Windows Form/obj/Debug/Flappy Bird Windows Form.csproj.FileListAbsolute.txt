@@ -8,3 +8,14 @@ C:\Users\Anhar Ali\Documents\Visual Studio 2017\Projects\Flappy Bird Windows For
 C:\Users\Anhar Ali\Documents\Visual Studio 2017\Projects\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.csproj.CoreCompileInputs.cache
 C:\Users\Anhar Ali\Documents\Visual Studio 2017\Projects\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.exe
 C:\Users\Anhar Ali\Documents\Visual Studio 2017\Projects\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.pdb
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\bin\Debug\Flappy Bird Windows Form.exe.config
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\bin\Debug\Flappy Bird Windows Form.exe
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\bin\Debug\Flappy Bird Windows Form.pdb
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.csproj.AssemblyReference.cache
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.exe.config
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy_Bird_Windows_Form.Form1.resources
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy_Bird_Windows_Form.Properties.Resources.resources
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.csproj.GenerateResource.cache
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.csproj.CoreCompileInputs.cache
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.exe
+C:\Users\smnb0\Documents\Code\Flappy bird\Flappy Bird Windows Form\Flappy Bird Windows Form\obj\Debug\Flappy Bird Windows Form.pdb
